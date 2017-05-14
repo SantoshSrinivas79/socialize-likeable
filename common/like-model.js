@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { BaseModel } from 'meteor/socialize:base-model';
 import { LinkableModel } from 'meteor/socialize:linkable-model';
-import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import SimpleSchema from 'simpl-schema';
 
 export const LikesCollection = new Mongo.Collection("likes");
 
@@ -32,7 +32,7 @@ const LikeSchema = new SimpleSchema({
  * A model of a like which is connected to another database object
  * @class Like
  */
-export class Like extends LinkableModel(BaseModel) {
+export class Like extends LinkableModel {
     constructor(document) {
         super(document)
     }

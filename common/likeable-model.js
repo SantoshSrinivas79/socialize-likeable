@@ -1,14 +1,14 @@
 import { Meteor } from 'meteor/meteor';
 import { _ } from 'meteor/underscore';
-import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import SimpleSchema from 'simpl-schema';
 import { LikesCollection, Like } from './like-model';
 import { LinkParent } from 'meteor/socialize:linkable-model';
-
+import { BaseModel } from 'meteor/socialize:base-model';
 
 /**
  * LikeableModel - a mixin providing Likeable behavior for a model
  */
-export const LikeableModel = Base => class extends Base {
+export class LikeableModel extends LinkParent {
     constructor(document){
         super(document);
         if(!(this instanceof LinkParent)){
