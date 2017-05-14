@@ -14,12 +14,18 @@ LikesCollection.allow({
 
 LikesCollection.after.insert(function (userId, like) {
     //after a successful like, increment the linked object's _likeCount property
-    var collection = LinkableModel.getCollectionForRegisteredType(like.objectType);
+    console.log("after a successful like, increment the linked object's _likeCount property");
+    console.log(like);
+    var collection = LinkableModel.prototype.getCollectionForRegisteredType(like.objectType);
+    // console.log(collection);
     userId && collection && collection.update(like.linkedObjectId, {$inc:{_likeCount:1}});
 });
 
 LikesCollection.after.remove(function (userId, like) {
     //if the user unlikes an object, decrement the linked objects _likeCount property
-    var collection = LinkableModel.getCollectionForRegisteredType(like.objectType);
+    console.log("if the user unlikes an object, decrement the linked objects _likeCount property");
+    console.log(like);
+    var collection = LinkableModel.prototype.getCollectionForRegisteredType(like.objectType);
+    // console.log(collection);
     userId && collection && collection.update(like.linkedObjectId, {$inc:{_likeCount:-1}});
 });
